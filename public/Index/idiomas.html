@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Multiple Languages with Jquery and Json</title>
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript">
+    var arrLang = {
+      'en': {
+        'gastro': 'Gastronomy',
+        'artesa': 'Crafts',
+        'museo': 'Museum',
+        'musica': 'Music',
+        'enviar': 'Send'
+      },
+      'es': {
+        'gastro': 'Gastronomia',
+        'artesa': 'Artesanias',
+        'museo': 'Museos',
+        'musica': 'Musica',
+        'enviar': 'Enviar'
+      }
+    };
+    // Process translation
+    $(function() {
+      $('.translate').click(function() {
+        var lang = $(this).attr('id');
+        $('.lang').each(function(index, item) {
+          $(this).text(arrLang[lang][$(this).attr('key')]);
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+
+<!-- Es el dropdown de los idiomas, modificar para que quede bien -->
+<div class="navbar">
+    <div class="dropdown">
+      <button class="dropbtn">Dropdown 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+          <button id="es" class="translate">Español</button>
+          <button id="en" class="translate">English</button>
+      </div>
+    </div> 
+  </div>
+
+  <div class="item">
+      <input type="hidden" id="item" value="Artesanias" >
+      <a class="btn" onclick="guardarDato()"><p class="lang" key="artesa">Artesanias</p></a>
+  </div>
+  
+  <div class="item">
+      <!-- <button onclick="guardarDato()"><p class="lang" key="home">Gastronomia</p></button> -->
+      <input type="hidden" id="item2" value="Gastronomia" >
+      <a class="btn" onclick="guardarDato2()"><p class="lang" key="gastro">Gastronomia</p></a>
+      <!-- <input class="btn" type="button" onclick="guardarDato()" value="" > -->
+      <!-- <p class="lang" key="home">Gastronomia</p> -->
+  </div>
+
+  <div class="item">
+      <input type="hidden" id="item3" value="Museos" >
+      <a class="btn" onclick="guardarDato3()"><p class="lang" key="museo">Museos</p></a>
+  </div>
+  <div class="item">
+      <input type="hidden" id="item4" value="Musica" >
+      <a class="btn" onclick="guardarDato4()"><p class="lang" key="musica">Musica</p></a>
+  </div>
+
+    <button onclick="recuperarDatos()"><p class="lang" key="enviar">Enviar</p></button>
+    <!-- <input type="button" onclick="recuperarDatos()" value="Enviar" /> -->
+<script>
+    let gustos = []
+    let gusto;
+    function guardarDato(){
+      gusto = document.getElementById("item").value;
+      gustos.push(gusto);
+    }
+    function guardarDato2(){
+      gusto = document.getElementById("item2").value;
+      gustos.push(gusto);
+    }
+    function guardarDato3(){
+      gusto = document.getElementById("item3").value;
+      gustos.push(gusto);
+    }
+    function guardarDato4(){
+      gusto = document.getElementById("item4").value;
+      gustos.push(gusto);
+    }
+
+    function recuperarDatos() {
+        for ( i = 0; i < gustos.length; i++) {
+         var resultado = gustos[i];
+         imprimir(resultado);
+         }   
+    }
+    function imprimir(valor){
+        alert(valor);
+    }
+</script>
+
+
+    <!-- Scripts de librerias -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
